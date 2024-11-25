@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:notsapp/cubits/notes_cubit/notes_cubit.dart';
+
 import 'package:notsapp/views/notes_view.dart';
 
 import 'add_notes_buttom_sheet.dart';

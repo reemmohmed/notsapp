@@ -4,9 +4,6 @@ import 'package:notsapp/cubits/add_note/add_note_cubit.dart';
 import 'package:notsapp/cubits/notes_cubit/notes_cubit.dart';
 import 'package:notsapp/views/widgets/add_note_form.dart';
 
-import 'custom_buttom.dart';
-import 'custom_text_field.dart';
-
 class AddNotesButtomSheet extends StatelessWidget {
   const AddNotesButtomSheet({super.key});
 
