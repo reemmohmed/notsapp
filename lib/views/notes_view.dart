@@ -15,7 +15,8 @@ class NotesViewbody extends StatefulWidget {
 class _NotesViewbodyState extends State<NotesViewbody> {
   @override
   void initState() {
-    BlocProvider.of<NotesCubit>(context).feachallNOts();
+    context.read<NotesCubit>().feachallNOts();
+    // BlocProvider.of<NotesCubit>(context).feachallNOts();
     super.initState();
   }
 
