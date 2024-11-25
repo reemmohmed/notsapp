@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:notsapp/Models/note_model.dart';
 import 'package:notsapp/views/edit_view_notes.dart';
 
 class CustomItem extends StatelessWidget {
-  const CustomItem({super.key});
-
+  const CustomItem({super.key, required this.notes});
+  final NoteModel notes;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -16,17 +17,16 @@ class CustomItem extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 24),
         decoration: BoxDecoration(
-            color: const Color(0xffffcd7a),
-            borderRadius: BorderRadius.circular(16)),
+            color: Color(notes.color), borderRadius: BorderRadius.circular(16)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             ListTile(
-              title: const Padding(
-                padding: EdgeInsets.only(bottom: 16),
+              title: Padding(
+                padding: const EdgeInsets.only(bottom: 16),
                 child: Text(
-                  'Flutter tips',
-                  style: TextStyle(color: Colors.black, fontSize: 25),
+                  notes.title,
+                  style: const TextStyle(color: Colors.black, fontSize: 25),
                 ),
               ),
               subtitle: Padding(
@@ -34,7 +34,7 @@ class CustomItem extends StatelessWidget {
                   bottom: 10,
                 ),
                 child: Text(
-                  'Build your Career with  Tharwat Samy',
+                  notes.subtitle,
                   style: TextStyle(
                     color: Colors.black.withOpacity(.4),
                     fontSize: 20,
@@ -42,7 +42,9 @@ class CustomItem extends StatelessWidget {
                 ),
               ),
               trailing: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  notes.delete();
+                },
                 icon: const FaIcon(
                   FontAwesomeIcons.trash,
                   color: Colors.black,
@@ -50,10 +52,11 @@ class CustomItem extends StatelessWidget {
                 ),
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.only(right: 24, bottom: 24),
-              child: Text('May 21, 2022',
-                  style: TextStyle(color: Color(0xff996e3a), fontSize: 14)),
+            Padding(
+              padding: const EdgeInsets.only(right: 24, bottom: 24),
+              child: Text(notes.date,
+                  style:
+                      const TextStyle(color: Color(0xff996e3a), fontSize: 14)),
             )
           ],
         ),

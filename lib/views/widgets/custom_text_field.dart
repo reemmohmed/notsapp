@@ -2,14 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:notsapp/constant.dart';
 
 class Custtomtextfield extends StatelessWidget {
-  const Custtomtextfield(
-      {super.key, required this.hint, this.maxLines = 1, this.onSave});
+  Custtomtextfield(
+      {super.key,
+      required this.hint,
+      this.maxLines = 1,
+      this.onSave,
+      this.controller});
   final String hint;
+  final TextEditingController? controller;
   final int maxLines;
   final void Function(String?)? onSave;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: controller,
       onSaved: onSave,
       validator: (value) {
         //if enput to user is null يعني فارغ لم يتم ادخال اي شي اذن اعطيه هذا الريتيرن

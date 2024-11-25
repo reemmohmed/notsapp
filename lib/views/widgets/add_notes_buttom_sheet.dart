@@ -18,10 +18,8 @@ class AddNotesButtomSheet extends StatelessWidget {
         listener: (context, state) {
           if (state is AddNoteFailuer) {
             print("failed ${state.errorMessage}");
-
-            if (state is AddNoteSuccess) {
-              Navigator.pop(context);
-            }
+          } else if (state is AddNoteSuccess) {
+            Navigator.pop(context);
           }
         },
         builder: (context, state) {

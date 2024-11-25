@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notsapp/Models/note_model.dart';
 import 'package:notsapp/cubits/add_note/add_note_cubit.dart';
+import 'package:intl/intl.dart';
 
 import 'custom_buttom.dart';
 import 'custom_text_field.dart';
@@ -16,6 +17,9 @@ class Addnoteform extends StatefulWidget {
 }
 
 class _AddnoteformState extends State<Addnoteform> {
+  final TextEditingController titleController = TextEditingController();
+  final TextEditingController subtitleController = TextEditingController();
+
   final GlobalKey<FormState> formkey = GlobalKey();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
   String? title, subtitle;
@@ -31,6 +35,7 @@ class _AddnoteformState extends State<Addnoteform> {
             height: 35,
           ),
           Custtomtextfield(
+            controller: titleController,
             onSave: (value) {
               //استقبال value in title
               title = value;
@@ -41,6 +46,7 @@ class _AddnoteformState extends State<Addnoteform> {
             height: 15,
           ),
           Custtomtextfield(
+            controller: subtitleController,
             onSave: (value) {
               subtitle = value;
             },
@@ -57,12 +63,18 @@ class _AddnoteformState extends State<Addnoteform> {
                 ontap: () {
                   if (formkey.currentState!.validate()) {
                     formkey.currentState!.save();
+                    var currenDate = DateTime.now();
+                    var formatecurrenDate =
+                        DateFormat('dd/MM/yyyy').format(currenDate);
+
                     var notemodel = NoteModel(
                         title: title!,
                         subtitle: subtitle!,
-                        date: DateTime.now().toString(),
+                        date: formatecurrenDate,
                         color: Colors.blue.value);
                     BlocProvider.of<AddNoteCubit>(context).addnot(notemodel);
+                    titleController.clear();
+                    subtitleController.clear();
                   } else {
                     autovalidateMode = AutovalidateMode.always;
                   }
